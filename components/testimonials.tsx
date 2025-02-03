@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { ArrowLeft, ArrowRight } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 
 // Sample testimonial data
 const testimonials = [
@@ -69,50 +70,73 @@ export default function Testimonials() {
   };
 
   return (
-    <section className="md:py-[112px] py-12 md:px-[64px] px-6 bg-[#CDBCAB]">
+    <motion.section
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      className="md:py-[112px] py-12 md:px-[64px] px-6 bg-[#CDBCAB]"
+    >
+      {" "}
       <div className="">
-        <h2 className="lg:text-[64px] md:text-[48px] text-[48px] font-medium leading-[76.8px] text-center text-[#6B6356] mb-16">
+        <motion.h2
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2 }}
+          className="lg:text-[64px] md:text-[48px] text-[48px] font-medium leading-[76.8px] text-center text-[#6B6356] mb-16"
+        >
           Don&apos;t just take our word for it
-        </h2>
+        </motion.h2>
 
         <div className="relative flex flex-row items-center ">
           {/* Navigation Buttons */}
-          <button
+          <motion.button
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.95 }}
             onClick={prevSlide}
             className="p-2 rounded-full border-[#6B6356] border-[1px] text-gray-400 hover:border-gray-600 hover:text-gray-600 transition-colors"
             aria-label="Previous testimonials"
           >
             <ArrowLeft className="h-6 w-6 text-[#6B6356]" />
-          </button>
+          </motion.button>
 
           {/* Testimonials Container */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-16 max-w-7xl mx-auto ">
-            {testimonials
-              .slice(currentSlide, currentSlide + 2)
-              .map((testimonial, index) => (
-                <div key={currentSlide + index} className="text-center">
-                  <blockquote className="text-[18px] font-[400px] leading-[27px] text-[#6B6356] mb-6">
-                    &quot;{testimonial.quote}&quot;
-                  </blockquote>
-                  <cite className="not-italic">
-                    <div className="text-[24px] font-medium leading-[28.8px] text-[#6B6356] mb-1">
-                      {testimonial.name}
-                    </div>
-                    <div className="text-[18px] font-[400px] leading-[27px] text-[#6B6356]">
-                      {testimonial.position}
-                    </div>
-                  </cite>
-                </div>
-              ))}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-16 max-w-7xl mx-auto">
+            <AnimatePresence mode="wait">
+              {testimonials
+                .slice(currentSlide, currentSlide + 2)
+                .map((testimonial, index) => (
+                  <motion.div
+                    key={currentSlide + index}
+                    initial={{ opacity: 0, x: 20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: -20 }}
+                    transition={{ duration: 0.3 }}
+                    className="text-center"
+                  >
+                    <blockquote className="text-[18px] font-[400px] leading-[27px] text-[#6B6356] mb-6">
+                      &quot;{testimonial.quote}&quot;
+                    </blockquote>
+                    <cite className="not-italic">
+                      <div className="text-[24px] font-medium leading-[28.8px] text-[#6B6356] mb-1">
+                        {testimonial.name}
+                      </div>
+                      <div className="text-[18px] font-[400px] leading-[27px] text-[#6B6356]">
+                        {testimonial.position}
+                      </div>
+                    </cite>
+                  </motion.div>
+                ))}
+            </AnimatePresence>
           </div>
 
-          <button
+          <motion.button
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.95 }}
             onClick={nextSlide}
             className="p-2 rounded-full border-[#6B6356] border-[1px] text-gray-400 hover:border-gray-600 hover:text-gray-600 transition-colors"
             aria-label="Next testimonials"
           >
             <ArrowRight className="h-6 w-6 text-[#6B6356]" />
-          </button>
+          </motion.button>
         </div>
 
         {/* Pagination Dots */}
@@ -129,6 +153,6 @@ export default function Testimonials() {
           ))}
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 }

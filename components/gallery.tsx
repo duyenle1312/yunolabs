@@ -5,6 +5,7 @@ import useEmblaCarousel from "embla-carousel-react";
 import { EmblaCarouselType } from "embla-carousel";
 import Image from "next/image";
 import { ArrowLeft, ArrowRight } from "lucide-react";
+import { motion } from "framer-motion";
 
 interface ConcernCard {
   title: string;
@@ -105,17 +106,32 @@ export default function ConcernsGallery() {
     <section className="md:py-[112px] py-12 md:px-[64px] px-6 bg-white">
       <div className="">
         <div className="mb-20">
-          <h2 className="lg:text-[64px] md:text-[48px] text-[48px] font-medium leading-[76.8px] text-black mb-5">Concerns</h2>
-          <p className="lg:text-[18px] md:text-[16px] text-[16px] font-[400px] leading-[27px] text-black">
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="lg:text-[64px] md:text-[48px] text-[48px] font-medium leading-[76.8px] text-black mb-5"
+          >
+            Concerns
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="lg:text-[18px] md:text-[16px] text-[16px] font-[400px] leading-[27px] text-black"
+          >
             Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-          </p>
+          </motion.p>
         </div>
 
         <div className="relative">
           <div className="overflow-hidden" ref={emblaRef}>
             <div className="flex gap-4">
               {concerns.map((concern, index) => (
-                <div key={index} className="md:flex-[0_0_444px] flex-[0_0_208px] min-w-0">
+                <div
+                  key={index}
+                  className="md:flex-[0_0_444px] flex-[0_0_208px] min-w-0"
+                >
                   <div className="relative md:h-[616px] md:w-[416px] h-[308px] w-[208px] rounded-3xl overflow-hidden group">
                     <Image
                       src={concern.image || "/placeholder.svg"}
@@ -123,12 +139,17 @@ export default function ConcernsGallery() {
                       fill
                       className="object-cover transition-transform duration-300 group-hover:scale-105"
                     />
-                    
+
                     <div className="absolute inset-0 bg-gradient-to-t from-primary/60 to-transparent" />
                     <div className="absolute bottom-0 left-0 p-8">
-                      <h3 className="text-[#F4F4F4] font-[400px] md:text-[48px] text-[24px] md:leading-[57.6px] whitespace-pre-line">
+                      <motion.h3
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.5, delay: index * 0.1 + 0.2 }}
+                        className="text-[#F4F4F4] font-[400px] md:text-[48px] text-[24px] md:leading-[57.6px] whitespace-pre-line"
+                      >
                         {concern.title}
-                      </h3>
+                      </motion.h3>
                     </div>
                   </div>
                 </div>
