@@ -11,6 +11,11 @@ export default {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
+        primary: "#7D614B",
+      },
+      fontFamily: {
+        sans: ["'PP Neue Montreal'", "sans-serif"],
+        mono: ["var(--font-geist-mono)"],
       },
     },
   },
