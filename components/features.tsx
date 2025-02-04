@@ -23,7 +23,7 @@ export default function FeaturesSection() {
                   1
                 </span>
               </div>
-              <div className="relative md:h-[234px] md:w-[288px] h-[117px] w-[144px] rounded-3xl overflow-hidden pb-16 lg:-mt-10 md:mt-5 mt-6">
+              <div className="relative md:h-[234px] md:w-[288px] h-[117px] w-[144px] rounded-3xl overflow-hidden pb-16 lg:-mt-0 md:mt-5 mt-6">
                 <Image
                   src="/feature1.jpeg"
                   alt="Non-surgical cosmetic treatment"
@@ -51,7 +51,7 @@ export default function FeaturesSection() {
                   2
                 </span>
               </div>
-              <div className="relative md:h-[234px] md:w-[288px] h-[117px] w-[144px] rounded-3xl overflow-hidden pb-16 lg:-mt-10 md:mt-5 mt-6">
+              <div className="relative md:h-[234px] md:w-[288px] h-[117px] w-[144px] rounded-3xl overflow-hidden pb-16 lg:-mt-0 md:mt-5 mt-6">
                 <Image
                   src="/feature2.png"
                   alt="Virtual consultation setup"
